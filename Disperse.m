@@ -1,7 +1,8 @@
-function [HabitatsAfterDispersal]=Disperse(numHabitats, CurrentHabitats, ProbOffspringDispersal, DisperseDeathRate)
+function [HabitatsAfterDispersal, MigrationStatus]=Disperse(numHabitats, CurrentHabitats, ProbOffspringDispersal, DisperseDeathRate)
 	
 popSize=length(CurrentHabitats);
 HabitatsAfterDispersal=zeros(1,popSize);
+MigrationStatus = zeros(1, popSize);
 
 for i=1:popSize
 	currentHabitat=CurrentHabitats(i);
@@ -31,6 +32,7 @@ for i=1:popSize
 				currentHabitat=1;
 			end
 		end
+		MigrationStatus(i)=1;
 	end
 	HabitatsAfterDispersal(i)=currentHabitat;
 end
@@ -44,7 +46,7 @@ endfunction
 %DisperseDeathRate=0;
 %Case of all disperse
 %CurrentHabitats=[1,2,1,2,1,2,1,2,1,2]
-%NewHabitats=Disperse(numHabitats, CurrentHabitats, ProbOffspringDispersal, DisperseDeathRate)
+%[NewHabitats,MigrantStatus]=Disperse(numHabitats, CurrentHabitats, ProbOffspringDispersal, DisperseDeathRate)
 %Case of high death rates
 %DisperseDeathRate=1;
 %NewHabitats=Disperse(numHabitats, CurrentHabitats, ProbOffspringDispersal, DisperseDeathRate)
